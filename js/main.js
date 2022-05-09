@@ -16,8 +16,28 @@ while (triggerNumber.length < 16) {
 }
 console.log(triggerNumber);
 // In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100.
-// L’utente non può inserire più volte lo stesso numero.
+let userNumber;
+//creo una lista di numeri scelti dall'utente
+let choiceNumber = [];
+//chiedo all'utente di inserire un numero per 84 volte. (5 debug)
+while (choiceNumber.length < 5) {
+    userNumber = Number(prompt("inserisci un numero da 1 a 100"));
+    //SE il numero inserito dall'utente, non è presente nella lista
+    if (!choiceNumber.includes(userNumber)) {
+        //aggiungo il nuovo numero
+        choiceNumber.push(userNumber); 
+        //ALTRIMENTI lo avviso e riparte il ciclo
+    } else {
+        alert("già inserito");
+    }
+    
+}
+
+
+
+
 // Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero.
+
 // La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 // BONUS: (da fare solo se funziona tutto il resto)
