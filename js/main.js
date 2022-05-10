@@ -6,40 +6,43 @@ function getNumberRange(min, max) {
 /* MAIN */
 // Dichiaro array da popolare
 let triggerNumber = [];
+let numbers;
 // Eseguo ciclo generando un numero random da 1 a 100, per 16 volte.
 while (triggerNumber.length < 16) {
-    let numbers = getNumberRange(1, 100);
+    numbers = getNumberRange(1, 100);
     //SE il numero generato non è presente nell'array, lo aggiungo.
     if (!triggerNumber.includes(numbers)) {
         triggerNumber.push(numbers);
+        
     }
 }
 console.log(triggerNumber);
-// In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100.
-let userNumber;
-//creo una lista di numeri scelti dall'utente
-let choiceNumber = [];
-//chiedo all'utente di inserire un numero per 84 volte. (5 debug)
-while (choiceNumber.length < 5) {
-    userNumber = Number(prompt("inserisci un numero da 1 a 100"));
-    //SE il numero inserito dall'utente, non è presente nella lista
-    if (!choiceNumber.includes(userNumber)) {
-        //aggiungo il nuovo numero
-        choiceNumber.push(userNumber); 
-        //ALTRIMENTI lo avviso e riparte il ciclo
+let userChoice = [];
+// assegno valore false a variabile booleana
+let triggerOn = false;
+// eseguo ciclo finchè la mia variabile rimane false e l'utente inserisce una quantità max di numeri
+while (!triggerOn && userChoice.length < 84) {
+    let userNumber;
+    //Chiedo all'utente di inserire un numero e continuo a chiederlo se il dato inserito non è un numero o è un numero fuori range
+    do {
+        userNumber = Number(prompt("Inserisci solo un numero compreso tra 1 e 100"));
+    } while (isNaN(userNumber) || userNumber < 1 || userNumber > 100);
+    //Se l'utente inserisce un numero trigger, la variabile diventa true ed esco dal ciclo
+    if (triggerNumber.includes(userNumber)) {
+        alert(`hai perso! Il tuo punteggio è ${userChoice.length}`);
+        triggerOn = true;
+    } else if (!userChoice.includes(userNumber)) {
+        userChoice.push(userNumber);
     } else {
-        alert("già inserito");
-    }
-    
+        alert("hai già inserito questo numero")
+   }
+   console.log(userChoice, userNumber);
+}
+console.log("game over");
+if(!triggerOn) {
+    alert("congratulazioni, hai vinto!")
 }
 
-
-
-
-// Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero.
-
-// La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
-// Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 // BONUS: (da fare solo se funziona tutto il resto)
 // all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
 // con difficoltà 0 => tra 1 e 100
