@@ -4,12 +4,26 @@ function getNumberRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 /* MAIN */
+//Chiedo all'utente il livello di difficoltà
+let level = Number(prompt("Con quale livello di difficoltà vuoi giocare? Scegli un numero tra 0, 1 e 2"));
+if (level === 0) {
+    triggersLevel = 100;
+} else if (level === 1) {
+    triggersLevel = 80;
+} else {
+    triggersLevel = 50;
+}
+
 // Dichiaro array da popolare
 let triggerNumber = [];
+//creo variabile per sostituire valore numerico e riutilizzarla
+let trigger = 16;
+//assegno variabile ai tentativi dell'utente (84 = 100 - 16 default)
+let choiceTime = triggersLevel - trigger; 
 let numbers;
 // Eseguo ciclo generando un numero random da 1 a 100, per 16 volte.
-while (triggerNumber.length < 16) {
-    numbers = getNumberRange(1, 100);
+while (triggerNumber.length < trigger) {
+    numbers = getNumberRange(1, triggersLevel);
     //SE il numero generato non è presente nell'array, lo aggiungo.
     if (!triggerNumber.includes(numbers)) {
         triggerNumber.push(numbers);
@@ -21,7 +35,7 @@ let userChoice = [];
 // assegno valore false a variabile booleana
 let triggerOn = false;
 // eseguo ciclo finchè la mia variabile rimane false e l'utente inserisce una quantità max di numeri
-while (!triggerOn && userChoice.length < 84) {
+while (!triggerOn && userChoice.length < choiceTime) {
     let userNumber;
     //Chiedo all'utente di inserire un numero e continuo a chiederlo se il dato inserito non è un numero o è un numero fuori range
     do {
