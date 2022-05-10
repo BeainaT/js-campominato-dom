@@ -4,14 +4,21 @@ function getNumberRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 /* MAIN */
-//Chiedo all'utente il livello di difficoltà
-let level = Number(prompt("Con quale livello di difficoltà vuoi giocare? Scegli un numero tra 0, 1 e 2"));
-if (level === 0) {
-    triggersLevel = 100;
-} else if (level === 1) {
-    triggersLevel = 80;
-} else {
-    triggersLevel = 50;
+//Chiedo all'utente il livello di difficoltà finchè le condizioni non siano verificate
+let level;
+do {
+    level = Number(prompt("Con quale livello di difficoltà vuoi giocare? Scegli un numero tra 0, 1 e 2"));
+} while (isNaN(level) || level < 0 || level > 2);
+
+switch (level) {
+    case 0:
+        triggersLevel = 100;
+        break;
+    case 1:
+        triggersLevel = 80;
+        break;
+    default:
+        triggersLevel = 50;
 }
 
 // Dichiaro array da popolare
@@ -19,7 +26,7 @@ let triggerNumber = [];
 //creo variabile per sostituire valore numerico e riutilizzarla
 let trigger = 16;
 //assegno variabile ai tentativi dell'utente (84 = 100 - 16 default)
-let choiceTime = triggersLevel - trigger; 
+let choiceTime = triggersLevel - trigger;
 let numbers;
 // Eseguo ciclo generando un numero random da 1 a 100, per 16 volte.
 while (triggerNumber.length < trigger) {
@@ -27,7 +34,7 @@ while (triggerNumber.length < trigger) {
     //SE il numero generato non è presente nell'array, lo aggiungo.
     if (!triggerNumber.includes(numbers)) {
         triggerNumber.push(numbers);
-        
+
     }
 }
 console.log(triggerNumber);
@@ -49,11 +56,11 @@ while (!triggerOn && userChoice.length < choiceTime) {
         userChoice.push(userNumber);
     } else {
         alert("hai già inserito questo numero")
-   }
-   console.log(userChoice, userNumber);
+    }
+    console.log(userChoice, userNumber);
 }
 console.log("game over");
-if(!triggerOn) {
+if (!triggerOn) {
     alert("congratulazioni, hai vinto!")
 }
 
