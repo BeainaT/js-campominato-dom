@@ -46,8 +46,8 @@ while (!triggerOn && userChoice.length < choiceTime) {
     let userNumber;
     //Chiedo all'utente di inserire un numero e continuo a chiederlo se il dato inserito non è un numero o è un numero fuori range
     do {
-        userNumber = Number(prompt("Inserisci solo un numero compreso tra 1 e 100"));
-    } while (isNaN(userNumber) || userNumber < 1 || userNumber > 100);
+        userNumber = Number(prompt(`Inserisci solo un numero compreso tra 1 e ${triggersLevel}`));
+    } while (isNaN(userNumber) || userNumber < 1 || userNumber > triggersLevel);
     //Se l'utente inserisce un numero trigger, la variabile diventa true ed esco dal ciclo
     if (triggerNumber.includes(userNumber)) {
         alert(`hai perso! Il tuo punteggio è ${userChoice.length}`);
